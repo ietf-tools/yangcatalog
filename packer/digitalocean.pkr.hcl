@@ -25,6 +25,12 @@ build {
   }
 
   provisioner "shell" {
+    environment_vars = [
+      "DEBIAN_FRONTEND=noninteractive",
+      "LC_ALL=C",
+      "LANG=en_US.UTF-8",
+      "LC_CTYPE=en_US.UTF-8"
+    ]
     scripts = [
       "scripts/base.sh",
       "scripts/docker.sh",
