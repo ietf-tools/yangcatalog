@@ -19,16 +19,15 @@ build {
   sources = ["source.digitalocean.yang"]
 
   provisioner "shell" {
-    environment_vars = [
-      "FOO=hello world",
-    ]
-    inline = [
-      "echo Installing Redis",
-      "sleep 30",
-      "sudo apt-get update",
-      "sudo apt-get install -y redis-server",
-      "echo \"FOO is $FOO\" > example.txt",
+    inline = "cloud-init status --wait"
+  }
+
+  provisioner "shell" {
+    scripts = [
+      "scripts/base.sh",
+      "scripts/docker.sh",
+      "scripts/yangcatalog.sh",
+      "scripts/cleanup.sh"
     ]
   }
 }
-      

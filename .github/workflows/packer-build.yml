@@ -10,11 +10,12 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Setup HashiCorp Packer
-    - uses: hashicorp/setup-packer@v2.0.1
+      uses: hashicorp/setup-packer@v2.0.1
     
     - name: Build Droplet Image
       env:
-        DIGITALOCEAN_API_TOKEN: ${{ secrets.DO_TOKEN }}
+        DIGITALOCEAN_TOKEN: ${{ secrets.DO_TOKEN }}
       working-directory: packer
       run: |
-        packer build digitalocean.json
+        packer init .
+        packer build digitalocean.pkr.hcl
