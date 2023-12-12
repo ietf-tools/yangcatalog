@@ -19,7 +19,9 @@ build {
   sources = ["source.digitalocean.yang"]
 
   provisioner "shell" {
-    inline = "cloud-init status --wait"
+    inline = [
+      "cloud-init status --wait"
+    ]
   }
 
   provisioner "shell" {
