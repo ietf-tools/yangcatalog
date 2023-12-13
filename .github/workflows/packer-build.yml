@@ -20,7 +20,7 @@ jobs:
         echo "Downloading ConfD..."
         export AWS_EC2_METADATA_DISABLED=true
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/confd-basic-8.0.10.linux.x86_64.zip confd.zip
-        unzip confd.zip
+        unzip confd.zip -d confd
     
     - name: Build Droplet Image
       env:
