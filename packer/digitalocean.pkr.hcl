@@ -26,8 +26,13 @@ build {
   }
 
   provisioner "file" {
-    source = "../confd/confd-basic-8.0.10.linux.x86_64.installer.bin"
+    source = "../confd-8.0.linux.x86_64.installer.bin"
     destination = "/var/yang/confd-8.0.10.linux.x86_64.installer.bin"
+  }
+
+  provisioner "file" {
+    source = "../yumapro-client-21.10-12.deb11.amd64.deb"
+    destination = "/var/yang/yumapro-client-21.10-12.deb11.amd64.deb"
   }
 
   provisioner "shell" {
