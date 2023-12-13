@@ -18,6 +18,7 @@ mkdir -p /var/yang/opensearch
 mkdir -p /var/yang/redis
 
 # Copy files
+cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./resources/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./confd/resources/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./module-compilation/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./yang-validator-extractor/resources/confd-8.0.linux.x86_64.installer.bin
