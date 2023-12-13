@@ -22,6 +22,7 @@ mkdir -p /app/frontend/yangcatalog-ui/tmp
 
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./resources/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/yumapro-client-21.10-12.deb11.amd64.deb ./resources/yumapro-client-21.10-12.deb11.amd64.deb
+chmod 777 ./resources/confd-8.0.linux.x86_64.installer.bin
 
 # Start containers
 docker compose build
