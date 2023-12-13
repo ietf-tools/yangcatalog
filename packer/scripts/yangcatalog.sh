@@ -17,6 +17,9 @@ mkdir -p /var/yang/logs/nginx
 mkdir -p /var/yang/opensearch
 mkdir -p /var/yang/redis
 
+# Copy files
+cp /var/yang/confd-8.0.10.linux.x86_64.installer.bin ./module-compilation/confd-8.0.linux.x86_64.installer.bin
+
 # Start containers
 docker compose build
 # docker compose up

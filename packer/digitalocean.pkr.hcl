@@ -20,8 +20,14 @@ build {
 
   provisioner "shell" {
     inline = [
-      "cloud-init status --wait"
+      "cloud-init status --wait",
+      "mkdir -p /var/yang"
     ]
+  }
+
+  provisioner "file" {
+    source = "../confd/confd-basic-8.0.10.linux.x86_64.installer.bin"
+    destination = "/var/yang/confd-8.0.10.linux.x86_64.installer.bin"
   }
 
   provisioner "shell" {
