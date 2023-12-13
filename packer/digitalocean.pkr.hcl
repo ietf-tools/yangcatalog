@@ -27,7 +27,7 @@ build {
 
   provisioner "file" {
     source = "../confd-8.0.linux.x86_64.installer.bin"
-    destination = "/var/yang/confd-8.0.10.linux.x86_64.installer.bin"
+    destination = "/var/yang/confd-8.0.linux.x86_64.installer.bin"
   }
 
   provisioner "file" {
