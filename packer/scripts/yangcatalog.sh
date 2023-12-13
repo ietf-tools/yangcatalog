@@ -18,11 +18,13 @@ mkdir -p /var/yang/opensearch
 mkdir -p /var/yang/redis
 
 # Copy files
+
+ls /var/yang/
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./resources/confd-8.0.linux.x86_64.installer.bin
-cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./confd/resources/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./module-compilation/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./yang-validator-extractor/resources/confd-8.0.linux.x86_64.installer.bin
 cp /var/yang/yumapro-client-21.10-12.deb11.amd64.deb ./yang-validator-extractor/resources/yumapro-client-21.10-12.deb11.amd64.deb
+ls ./resources/
 
 # Start containers
 docker compose build
