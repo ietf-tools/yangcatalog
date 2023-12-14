@@ -12,12 +12,11 @@ jobs:
     - name: Setup HashiCorp Packer
       uses: hashicorp/setup-packer@v2.0.1
 
-    - name: Fetch ConfD
+    - name: Fetch Installers
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.DO_SPACES_DEV_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.DO_SPACES_DEV_ACCESS_KEY }}
       run: |
-        echo "Downloading ConfD..."
         export AWS_EC2_METADATA_DISABLED=true
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/confd-8.0.linux.x86_64.installer.bin confd-8.0.linux.x86_64.installer.bin
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/pt-topology-0.1.0.tgz pt-topology-0.1.0.tgz
@@ -26,7 +25,9 @@ jobs:
     - name: Build Droplet Image
       env:
         DIGITALOCEAN_TOKEN: ${{ secrets.DO_TOKEN }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       working-directory: packer
       run: |
         packer init .
-        packer build digitalocean.pkr.hcl
+        packer build yangcatalog.pkr.hcl -only '*.digitalocean.*'

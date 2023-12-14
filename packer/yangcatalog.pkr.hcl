@@ -1,9 +1,30 @@
 packer {
   required_plugins {
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
     digitalocean = {
       version = ">= 1.0.4"
       source  = "github.com/digitalocean/digitalocean"
     }
+  }
+}
+
+source "amazon-ebs" "yang" {
+  skip_create_ami = true
+  region =  "us-east-1"
+  source_ami =  "ami-0fc5d935ebf8bc3bc"
+  instance_type =  "m6a.xlarge"
+  ssh_username =  "ubuntu"
+  ami_name =  "yangcatalog-${timestamp()}"
+  shutdown_behavior = "terminate"
+
+  launch_block_device_mappings {
+    device_name = "/dev/sda1"
+    volume_size = 30
+    volume_type = "gp3"
+    delete_on_termination = true
   }
 }
 
@@ -16,7 +37,10 @@ source "digitalocean" "yang" {
 }
 
 build {
-  sources = ["source.digitalocean.yang"]
+  sources = [
+    "source.amazon-ebs.yang",
+    "source.digitalocean.yang"
+  ]
 
   provisioner "shell" {
     inline = [
