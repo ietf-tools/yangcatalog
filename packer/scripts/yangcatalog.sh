@@ -25,7 +25,7 @@ cp /var/yang/yumapro-client-21.10-12.deb11.amd64.deb ./resources/yumapro-client-
 chmod 777 ./resources/confd-8.0.linux.x86_64.installer.bin
 
 # Temp Debug
-sed -i e 's/npm ci/npm ci --loglevel verbose/g' /app/frontend/yangcatalog-ui/Dockerfile
+sed -i -e 's/npm ci/npm ci --loglevel verbose/g' /app/frontend/yangcatalog-ui/Dockerfile
 
 # Start containers
 docker compose build
