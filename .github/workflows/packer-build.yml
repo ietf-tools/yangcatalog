@@ -20,6 +20,7 @@ jobs:
         echo "Downloading ConfD..."
         export AWS_EC2_METADATA_DISABLED=true
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/confd-8.0.linux.x86_64.installer.bin confd-8.0.linux.x86_64.installer.bin
+        aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/pt-topology-0.1.0.tgz pt-topology-0.1.0.tgz
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/yumapro-client-21.10-12.deb11.amd64.deb yumapro-client-21.10-12.deb11.amd64.deb
     
     - name: Build Droplet Image

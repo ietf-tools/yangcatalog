@@ -31,6 +31,11 @@ build {
   }
 
   provisioner "file" {
+    source = "../pt-topology-0.1.0.tgz"
+    destination = "/var/yang/pt-topology-0.1.0.tgz"
+  }
+
+  provisioner "file" {
     source = "../yumapro-client-21.10-12.deb11.amd64.deb"
     destination = "/var/yang/yumapro-client-21.10-12.deb11.amd64.deb"
   }

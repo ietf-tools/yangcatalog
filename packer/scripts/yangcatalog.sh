@@ -21,13 +21,11 @@ mkdir -p /app/frontend/yangcatalog-ui/tmp
 # Copy files
 
 cp /var/yang/confd-8.0.linux.x86_64.installer.bin ./resources/confd-8.0.linux.x86_64.installer.bin
-cp /var/yang/yumapro-client-21.10-12.deb11.amd64.deb ./resources/yumapro-client-21.10-12.deb11.amd64.deb
 chmod 777 ./resources/confd-8.0.linux.x86_64.installer.bin
 
-# Temp Debug
-tar czvf /app/frontend/yangcatalog-ui/tmp/pt-topology-0.1.0.tgz --files-from=/dev/null
+cp /var/yang/yumapro-client-21.10-12.deb11.amd64.deb ./resources/yumapro-client-21.10-12.deb11.amd64.deb
 
-#sed -i -e 's/npm ci/npm ci --loglevel verbose/g' /app/frontend/yangcatalog-ui/Dockerfile
+cp /var/yang/pt-topology-0.1.0.tgz ./frontend/yangcatalog-ui/tmp/pt-topology-0.1.0.tgz
 
 # Start containers
 docker compose build
