@@ -30,4 +30,4 @@ jobs:
       working-directory: packer
       run: |
         packer init .
-        packer build -only=source.digitalocean.yang yangcatalog.pkr.hcl
+        packer build -only=digitalocean.yang yangcatalog.pkr.hcl
