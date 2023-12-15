@@ -1,0 +1,10 @@
+[Unit]
+Description=YangCatalog init scripts
+
+[Service]
+ExecStart=/app/init.sh
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

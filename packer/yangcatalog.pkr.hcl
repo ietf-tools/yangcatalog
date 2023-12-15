@@ -65,6 +65,7 @@ build {
   }
 
   provisioner "shell" {
+    execute_command = "sudo -S sh -c '{{ .Vars }} {{ .Path }}'"
     environment_vars = [
       "DEBIAN_FRONTEND=noninteractive",
       "LC_ALL=C",
@@ -76,6 +77,12 @@ build {
       "scripts/docker.sh",
       "scripts/yangcatalog.sh",
       "scripts/cleanup.sh"
+    ]
+  }
+
+  provisioner "shell" {
+    scripts = [
+      "scripts/build.sh"
     ]
   }
 }
