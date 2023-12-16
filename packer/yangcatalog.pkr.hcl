@@ -17,7 +17,7 @@ source "amazon-ebs" "yang" {
   source_ami =  "ami-0fc5d935ebf8bc3bc"
   instance_type =  "m6a.xlarge"
   ssh_username =  "ubuntu"
-  ami_name =  clean_resource_name("yangcatalog-${timestamp()}")
+  ami_name =  "yangcatalog-${formatdate("YYYY-MM-DD_hh-mm", timestamp())}"
   shutdown_behavior = "terminate"
 
   launch_block_device_mappings {
