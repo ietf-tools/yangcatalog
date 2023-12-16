@@ -45,7 +45,7 @@ build {
   provisioner "shell" {
     inline = [
       "cloud-init status --wait",
-      "mkdir -p /var/yang"
+      "sudo mkdir -p /var/yang"
     ]
   }
 
