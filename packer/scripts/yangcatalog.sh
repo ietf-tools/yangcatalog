@@ -87,3 +87,6 @@ cp /app/packer/files/yang-boot.service /etc/systemd/system/yang-boot.service
 systemctl daemon-reload
 systemctl start yang-boot.service
 systemctl enable yang-boot.service
+
+# Docker Build
+docker compose build
