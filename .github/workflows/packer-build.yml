@@ -3,6 +3,10 @@ name: Packer Build
 on:
   workflow_dispatch:  
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,13 +25,22 @@ jobs:
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/confd-8.0.linux.x86_64.installer.bin confd-8.0.linux.x86_64.installer.bin
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/pt-topology-0.1.0.tgz pt-topology-0.1.0.tgz
         aws s3 cp --quiet --endpoint-url=${{ secrets.DO_SPACES_DEV_ENDPOINT }} s3://bin/yumapro-client-21.10-12.deb11.amd64.deb yumapro-client-21.10-12.deb11.amd64.deb
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      id: aws
+      with:
+        role-to-assume: ${{ secrets.AWS_PACKER_ROLE }}
+        aws-region: us-east-1
+        role-duration-seconds: 14400
+        mask-aws-account-id: true
     
     - name: Build Droplet Image
       env:
         DIGITALOCEAN_TOKEN: ${{ secrets.DO_TOKEN }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ steps.aws.outputs.aws-access-key-id }}
+        AWS_SECRET_ACCESS_KEY: ${{ steps.aws.outputs.aws-secret-access-key }}
       working-directory: packer
       run: |
         packer init .
-        packer build -only=digitalocean.yang yangcatalog.pkr.hcl
+        packer build -only=amazon-ebs.yang yangcatalog.pkr.hcl
