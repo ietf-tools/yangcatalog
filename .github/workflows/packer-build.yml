@@ -34,6 +34,7 @@ jobs:
         aws-region: us-east-1
         role-duration-seconds: 14400
         mask-aws-account-id: true
+        output-credentials: true
     
     - name: Build Droplet Image
       env:
