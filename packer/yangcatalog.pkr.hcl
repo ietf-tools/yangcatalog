@@ -76,6 +76,7 @@ build {
       "scripts/base.sh",
       "scripts/docker.sh",
       "scripts/yangcatalog.sh",
+      "scripts/grafana.sh",
       "scripts/cleanup.sh"
     ]
   }
